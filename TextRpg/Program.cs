@@ -4,10 +4,9 @@
     {
         static void Main(string[] args)
         {
-            string name = "";
-
             Console.WriteLine($"스파르타 던전에 오신걸 환영합니다!");
-            name = SettingName();
+            Warrior player = new Warrior();
+            player.name = SettingName();
 
             StartScene();
         }
@@ -30,6 +29,81 @@
             string input = Console.ReadLine();
 
             return input;
+        }
+
+        public interface ICharacter
+        {
+            string name { get; set; }
+            float HP { get; set; }
+            int Attack { get; set; }
+            bool isDead { get; set; }
+
+            public void TakeDamage(int damage);
+        }
+
+        public class Warrior : ICharacter 
+        {
+            public string name { get; set; }
+            public float HP { get; set; }
+            public int Attack { get; set; }
+            = 0;
+            public bool isDead { get; set; }
+            = false;
+
+            public void TakeDamage(int damage)
+            {
+
+            }
+        }
+
+        public class Monster : ICharacter
+        {
+            public string name { get; set; }
+            public float HP { get; set; }
+            public int Attack { get; set; }
+            = 0;
+            public bool isDead { get; set; }
+            = false;
+
+            public void TakeDamage(int damage)
+            {
+
+            }
+        }
+
+        public class Goblin : Monster 
+        { 
+        }
+
+        public class Dragon : Monster
+        {
+        }
+
+        public interface IItem
+        {
+            string name { get; set; }
+            public void Use(Warrior warrior);
+        }
+
+        public class HealthPotion : IItem 
+        {
+            public string name { get; set; }
+            public void Use(Warrior warrior) 
+            { 
+            }
+        }
+
+        public class StrengthPotion : IItem
+        {
+            public string name { get; set; }
+            public void Use(Warrior warrior)
+            {
+            }
+        }
+
+        public class Stag
+        { 
+
         }
     }
 }
