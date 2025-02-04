@@ -97,15 +97,16 @@ namespace TextRpg
 
         // 시작 씬
         public static int StartScene()
-        {
-            Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
-            Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
+        {            
             string input;
             int intInput;
 
             // 던전 이전 활동 선택
             while (true)
             {
+                Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
+                Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
+                Console.WriteLine("");
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
@@ -127,19 +128,37 @@ namespace TextRpg
         }
 
         // 상태 보기 
-        public static void ViewState(Player warrior)
+        public static void ViewState(Player player)
         {
             string input = "";
+            int plusAttack = 0;
+            int plusDefense = 0;
+
+            if (player.isOnEquip != null) 
+            {
+                foreach (var equip in player.isOnEquip)
+                {
+                    if (equip.statName == "공격력")
+                    {
+                        plusAttack = equip.stats;
+                    }
+                    else
+                    {
+                        plusDefense = equip.stats;
+                    }
+                }
+            }
+
             while (input != "0")
             {
                 Console.WriteLine("상태 보기");
                 Console.WriteLine("캐릭터의 정보가 표시됩니다.");
-                Console.WriteLine($"Lv. {warrior.level}");
-                Console.WriteLine($"{warrior.name} ( {warrior.job.ToString()} )");
-                Console.WriteLine($"공격력 : {warrior.attack}");
-                Console.WriteLine($"방어력 : {warrior.defense}");
-                Console.WriteLine($"체  력 : {warrior.hp}");
-                Console.WriteLine($"Gold   : {warrior.gold}");
+                Console.WriteLine($"Lv. {player.level}");
+                Console.WriteLine($"{player.name} ( {player.job.ToString()} )");
+                Console.WriteLine($"공격력 : {player.attack} {(plusAttack == 0 ? "" : $"+ {plusAttack}")}");
+                Console.WriteLine($"방어력 : {player.defense} {(plusDefense == 0 ? "" : $"+ {plusDefense}")}");
+                Console.WriteLine($"체  력 : {player.hp}");
+                Console.WriteLine($"Gold   : {player.gold}");
                 Console.WriteLine("");
                 Console.WriteLine("0. 나가기");
                 Console.WriteLine("");
