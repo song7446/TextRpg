@@ -1,0 +1,15 @@
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.AssemblyInfoInputs.cache
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.AssemblyInfo.cs
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.csproj.CoreCompileInputs.cache
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.sourcelink.json
+C:\Users\songw\source\repos\TextRpg\TextRpg\bin\Debug\net8.0\TextRpg.exe
+C:\Users\songw\source\repos\TextRpg\TextRpg\bin\Debug\net8.0\TextRpg.deps.json
+C:\Users\songw\source\repos\TextRpg\TextRpg\bin\Debug\net8.0\TextRpg.runtimeconfig.json
+C:\Users\songw\source\repos\TextRpg\TextRpg\bin\Debug\net8.0\TextRpg.dll
+C:\Users\songw\source\repos\TextRpg\TextRpg\bin\Debug\net8.0\TextRpg.pdb
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.dll
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\refint\TextRpg.dll
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.pdb
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\TextRpg.genruntimeconfig.cache
+C:\Users\songw\source\repos\TextRpg\TextRpg\obj\Debug\net8.0\ref\TextRpg.dll
