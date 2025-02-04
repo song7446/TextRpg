@@ -40,9 +40,25 @@ namespace TextRpg
                         ViewShop(player, shops);
                         break;
                     case 4:
-                        stage.Start();
+                        stage.SelectLevel();
                         break;
                 }
+            }
+        }
+
+        // To Do List
+        // 게임 시작 함수
+        public static void GameStart()
+        {
+            string input;
+            while (true)
+            {
+                Console.WriteLine("던전에 들어왔습니다.");
+                Console.WriteLine("");
+                Console.WriteLine("1. 몬스터와 싸우기");
+                Console.WriteLine("2. 던전 나가기");
+                Console.WriteLine("원하시는 행동을 입력해주세요.");
+                input = Console.ReadLine();
             }
         }
 
@@ -622,13 +638,7 @@ namespace TextRpg
             public Monster monster { get; set; }
 
             public int level { get; set; }
-
-            // 게임 시작 함수
-            public void Start()
-            {
-
-            }
-
+        
             // 레벨 선택 함수
             public void SelectLevel()
             {
@@ -637,27 +647,59 @@ namespace TextRpg
                 {
                     Console.WriteLine("레벨 선택");
                     Console.WriteLine("");
-                    Console.WriteLine("레벨을 선택하세요");
                     Console.WriteLine("1. 쉬움 - 물약 사용 가능 몬스터 체력 공격력 낮음");
                     Console.WriteLine("2. 보통 - 물약 사용 가능 몬스터 체력 공격력 보통");
                     Console.WriteLine("3. 어려움 - 물약 사용 불가능 몬스터 체력 공력력 높음");
+                    Console.WriteLine("원하시는 레벨을 입력해주세요.");
                     input = Console.ReadLine();
+                    Console.Clear();
                     if (input == "1" || input == "쉬움")
                     {
                         level = 1;
+                        break;
                     }
                     else if (input == "2" || input == "보통")
                     {
                         level = 2;
+                        break;
                     }
                     else if (input == "3" || input == "어려움")
                     {
                         level = 3;
+                        break;
                     }
                     else
                     {
                         Console.WriteLine("잘못된 입력입니다.");
                     }
+                }
+                LevelSetting();
+                GameStart();
+            }
+
+            // 레벨 세팅 함수 
+            public void LevelSetting()
+            {
+                switch (level)
+                {
+                    case 1:
+                        monster = new Goblin();
+                        monster.hp = 10;
+                        monster.attack = 1;
+                        monster.defense = 0;
+                        break;
+                    case 2:
+                        monster = new Goblin();
+                        monster.hp = 50;
+                        monster.attack = 5;
+                        monster.defense = 1;
+                        break;
+                    case 3:
+                        monster = new Dragon();
+                        monster.hp = 100;
+                        monster.attack = 10;
+                        monster.defense = 5;
+                        break;
                 }
             }
         }
