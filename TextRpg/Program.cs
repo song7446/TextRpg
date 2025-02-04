@@ -11,6 +11,7 @@ namespace TextRpg
             Player player = new Player();
             // 스테이지 생성
             Stage stage = new Stage();
+            stage.player = player;
             // 상점 생성
             Shops shops = new Shops();
             // 상점 물품 추가 
@@ -37,6 +38,9 @@ namespace TextRpg
                     case 3:
                         // 상점
                         ViewShop(player, shops);
+                        break;
+                    case 4:
+                        stage.Start();
                         break;
                 }
             }
@@ -97,7 +101,7 @@ namespace TextRpg
 
         // 시작 씬
         public static int StartScene()
-        {            
+        {
             string input;
             int intInput;
 
@@ -110,9 +114,10 @@ namespace TextRpg
                 Console.WriteLine("1. 상태 보기");
                 Console.WriteLine("2. 인벤토리");
                 Console.WriteLine("3. 상점");
+                Console.WriteLine("4. 던전 입장");
                 Console.WriteLine("원하시는 행동을 입력해주세요.");
                 input = Console.ReadLine();
-                if (input == "1" || input == "2" || input == "3")
+                if (input == "1" || input == "2" || input == "3" || input == "4")
                 {
                     intInput = Convert.ToInt32(input);
                     break;
@@ -134,7 +139,7 @@ namespace TextRpg
             int plusAttack = 0;
             int plusDefense = 0;
 
-            if (player.isOnEquip != null) 
+            if (player.isOnEquip != null)
             {
                 foreach (var equip in player.isOnEquip)
                 {
@@ -267,7 +272,7 @@ namespace TextRpg
                                 player.isOnEquip.Add(player.equipments[intInput - 1]);
                             }
                         }
-                    }                  
+                    }
                     // 숫자 입력이 아닐때 
                     else
                     {
@@ -388,7 +393,7 @@ namespace TextRpg
                         {
                             Console.WriteLine("잘못된 입력입니다.");
                         }
-                    }                    
+                    }
                     // 숫자 입력이 아니면
                     else
                     {
@@ -611,15 +616,49 @@ namespace TextRpg
         public class Stage
         {
             // 플레이어
-            Player player;
+            public Player player { get; set; }
 
             // 몬스터
-            Monster monster;
+            public Monster monster { get; set; }
+
+            public int level { get; set; }
 
             // 게임 시작 함수
             public void Start()
             {
 
+            }
+
+            // 레벨 선택 함수
+            public void SelectLevel()
+            {
+                string input;
+                while (true)
+                {
+                    Console.WriteLine("레벨 선택");
+                    Console.WriteLine("");
+                    Console.WriteLine("레벨을 선택하세요");
+                    Console.WriteLine("1. 쉬움 - 물약 사용 가능 몬스터 체력 공격력 낮음");
+                    Console.WriteLine("2. 보통 - 물약 사용 가능 몬스터 체력 공격력 보통");
+                    Console.WriteLine("3. 어려움 - 물약 사용 불가능 몬스터 체력 공력력 높음");
+                    input = Console.ReadLine();
+                    if (input == "1" || input == "쉬움")
+                    {
+                        level = 1;
+                    }
+                    else if (input == "2" || input == "보통")
+                    {
+                        level = 2;
+                    }
+                    else if (input == "3" || input == "어려움")
+                    {
+                        level = 3;
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }
+                }
             }
         }
 
