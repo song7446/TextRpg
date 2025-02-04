@@ -208,10 +208,20 @@ namespace TextRpg
                 // 장착 관리중일 때
                 if (isPutOnSetting)
                 {
-                    if (int.TryParse(input, out intInput))
+                    if (input == "0")
                     {
-
+                        isPutOnSetting = false;
                     }
+                    else if (int.TryParse(input, out intInput))
+                    {
+                        if (player.equipments != null)
+                        {
+                            if (intInput > 0 && intInput <= player.equipments.Count)
+                            {
+                                player.equipments[intInput - 1].isOn = !player.equipments[intInput - 1].isOn;
+                            }
+                        }
+                    }                  
                     // 숫자 입력이 아닐때 
                     else
                     {
@@ -297,15 +307,20 @@ namespace TextRpg
                 // 아이템 구매중일 때
                 if (isBuyItem)
                 {
+                    // 0 - 나가기 
+                    if (input == "0" || input == "나가기")
+                    {
+                        isBuyItem = false;
+                    }
                     // 숫자 입력인지 확인
-                    if (int.TryParse(input, out intInput))
+                    else if (int.TryParse(input, out intInput))
                     {
                         if (input == "0")
                         {
                             isBuyItem = false;
                         }
                         // 물품 번호 입력이라면                       
-                        else if (intInput < shops.equips.Count || intInput > 0)
+                        else if (intInput <= shops.equips.Count && intInput > 0)
                         {
                             if (!shops.equips[intInput - 1].isBuyed)
                             {
@@ -327,12 +342,7 @@ namespace TextRpg
                         {
                             Console.WriteLine("잘못된 입력입니다.");
                         }
-                    }
-                    // 0 - 나가기 
-                    else if (input == "0" || input == "나가기")
-                    {
-                        isBuyItem = false;
-                    }
+                    }                    
                     // 숫자 입력이 아니면
                     else
                     {
@@ -420,7 +430,7 @@ namespace TextRpg
             public int defense { get; set; } = 5;
 
             // 골드
-            public int gold { get; set; } = 1500;
+            public int gold { get; set; } = 150000;
 
             // 생존 상태
             public bool isDead { get; set; } = false;
