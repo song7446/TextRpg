@@ -208,17 +208,44 @@ namespace TextRpg
                 // 장착 관리중일 때
                 if (isPutOnSetting)
                 {
+                    // 0 - 장착 관리 해제
                     if (input == "0")
                     {
                         isPutOnSetting = false;
                     }
+                    // 이외 숫자는 아이템 장착 
                     else if (int.TryParse(input, out intInput))
                     {
+                        // null 방지 
                         if (player.equipments != null)
                         {
+                            // 배열 범위에 있는 숫자인지 확인 
                             if (intInput > 0 && intInput <= player.equipments.Count)
                             {
+                                // 아이템 장착 표시 
                                 player.equipments[intInput - 1].isOn = !player.equipments[intInput - 1].isOn;
+
+                                // 중복 계열 아이템 장착 방지
+                                if (player.isOnEquip != null)
+                                {
+                                    // System.InvalidOperationException = 컬렉션 순회중 컬렉션 변경시 발생하는 에러
+                                    // 때문에 리스트를 복사해서 순회하고 원본을 수정한다.
+                                    List<Equipment> copyEquip = new List<Equipment>(player.isOnEquip);
+
+                                    // 복사본 순회
+                                    foreach (var equipment in copyEquip)
+                                    {
+                                        // 같은 계열 아이템이 장착되어 있을 때 
+                                        if (equipment.statName == player.equipments[intInput - 1].statName)
+                                        {
+                                            // 장착되어 있는 아이템 해제 
+                                            player.isOnEquip.Remove(equipment);
+                                            int idx = player.equipments.IndexOf(equipment);
+                                            player.equipments[idx].isOn = false;
+                                        }
+                                    }
+                                }
+                                player.isOnEquip.Add(player.equipments[intInput - 1]);
                             }
                         }
                     }                  
@@ -434,6 +461,9 @@ namespace TextRpg
 
             // 생존 상태
             public bool isDead { get; set; } = false;
+
+            // 플레이어가 착용하고 있는 장비 목록 
+            public List<Equipment> isOnEquip { get; set; } = new List<Equipment>();
 
             // 플레이어의 아이템 목록
             public List<Equipment> equipments { get; set; } = new List<Equipment>();
